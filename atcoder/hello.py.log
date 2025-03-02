@@ -1,0 +1,2 @@
+execve("./hello.py", ["./hello.py"], 0x7ffdda4b1f00 /* 41 vars */) = -1 EACCES (Permission denied)
++++ exited with 1 +++
