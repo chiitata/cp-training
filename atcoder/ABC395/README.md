@@ -29,7 +29,8 @@ a = [[None]*n]*n
 indexと数字を同時に扱いたいときは
 ```enumerate(iterable, start=)```startは必須ではない
 ```for i, num in enumerate(a):
-    if num in last_occurrence(辞書):```
+    if num in last_occurrence(辞書):
+```
 enumerateでindexと数字を取り出した後にその数字が辞書の中に入っているか確認するコード
 
 ### D 物理的巣番号と論理的巣番号
