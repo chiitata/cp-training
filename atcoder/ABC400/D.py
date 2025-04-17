@@ -36,6 +36,7 @@ dp.append(f)
 # もし#であればもうさらに一個前がどうなっているかを調べる
 # この時にリストの外に出てしまう問題が発生
 if c == d:
+    continue
 elif c > d:
 elif c < d:
 
