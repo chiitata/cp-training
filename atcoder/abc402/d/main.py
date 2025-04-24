@@ -8,7 +8,7 @@ cnt = Counter()
 for _ in range(M):
     a, b = map(int, input().split())
     # 問題の番号は 1..N なので 0..N-1 に変換し，和を mod N
-    s = ((a-1) + (b-1)) % N
+    s = ((a) + (b)) % N
     cnt[s] += 1
 
 total_pairs = M * (M-1) // 2

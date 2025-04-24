@@ -1,42 +1,37 @@
-#　これはDPの問題っぽい気がする
+#　これは01BFSの問題っぽい気がする
 # (0, 0)を壁蹴り回数0回に設定して、もし(i, j)が#ならば(i-1, j)と(i, j-1)の小さいほうの値を挿入
 
+from collections import deque
+
 H, W = map(int, input().split())
+grid = []
+for _ in range(H):
+    grid.append(list(input()))
 
-s = [['#' for _ in range(W+2)]]
+def in_grid(i, j):
+    return 0<=i<H and 0<= j<W
 
-# 受け取り
-for i in range(H):
-    t = ['#'] + list(input()) + ['#']
-    s.append(t)
-
+done = []
+for _ in range(H):
+    done.append([False]*W)
 a, b, c, d = map(int, input().split())
+a, b, c, d = a-1, b-1, c-1, d-1
 
-# より左の方をスタートにするスタートとゴールの上下関係によってこれから条件分岐する必要がある
-if a<=c:
-    start_x = a
-    start_y = b
-    end_x = c
-    end_y = d
-elif a>c:
-    start_x = c
-    start_y = d
-    end_x = a
-    end_y = b
+Q = deque([(0, a, b)])
+while Q:
+    dist, x, y = Q.popleft()
+    if done[x][y]:
+        continue
+    if (x, y) == (c, d):
+        print(dist)
+        break
+    done[x][y] = True
+    for dx, dy in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
+        if in_grid(x+dx, y+dy) and not done[x+dx][y+dy] and grid[x+dx][y+dy] == '.':
+            Q.appendleft((dist, x+dx, y+dy))
+        elif in_grid(x+dx, y+dy) and not done[x+dx][y+dy]:
+            Q.append((dist+1, x+dx, y+dy))
+            if in_grid(x+2*dx, y+2*dy) and not done[x+2*dx][y+2*dy]:
+                Q.append((dist+1, x+2+dx, y+2*dy)) 
 
-dp = [[10**9 for _ in range(W+2)]]
-f = [10**9 for _ in range(W+2)]
-dp.append(f)
-for i in range(H):
-    t = [10**9] + [0 for _ in range(W)] + [10**9]
-    dp.append(t)
-dp.append(f)
-
-# 条件分岐まずその位置が#か.であるかを調べる
-# もし#であればもうさらに一個前がどうなっているかを調べる
-# この時にリストの外に出てしまう問題が発生
-if c == d:
-    continue
-elif c > d:
-elif c < d:
 
