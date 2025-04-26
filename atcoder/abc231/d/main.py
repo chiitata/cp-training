@@ -1,17 +1,4 @@
-"""itertools.chain.from_iterable の概要
-目的: itertools.chain.from_iterable(iterable) は、入れ子になった（ネストされた）反復可能オブジェクトの要素を1つの連続した反復可能オブジェクトとして展開します。"""
-
-"""forループを逆順で回す
-1. reversedを使う
-2. range(スタート, ストップ, 公差)"""
-
-"""del my_list	リスト自体を削除
-my_list.clear()	リストを空にする（要素を全削除）
-my_list.remove(value)	指定値を削除（最初の一致のみ）
-del my_list[index]	指定インデックスの要素を削除
-my_list.pop(index)	指定インデックスの要素を削除して返す
-リスト内包表記 / filter()	条件に合致しない要素を削除
-list(set(my_list))	重複を削除"""
+# !/usr/bin/env python3
 
 class UnionFind:
     def __init__(self, n):
@@ -39,3 +26,22 @@ class UnionFind:
         for i in range(self.n):
             result[self.leader(i).append(i)]
         return [r for r in result if r != []]
+    
+n, m = map(int, input().split())
+
+UF = UnionFind(n+1)
+
+count = [0]*(n+1)
+for i in range(m):
+    a, b = map(int, input().split())
+    if UF.same(a, b) == True:
+        print('No')
+        exit() 
+    UF.merge(a, b)
+    count[a] += 1
+    count[b] += 1
+    if count[a] == 3 or count[b] == 3:
+        print('No')
+        exit() 
+else:
+    print('Yes')
