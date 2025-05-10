@@ -4,6 +4,8 @@
 import sys
 from collections import defaultdict
 
+input = sys.stdin.readline
+
 
 def min_deletions(A, D):
     N = len(A)
@@ -23,7 +25,7 @@ def min_deletions(A, D):
 
     max_keep = 0
     # 3. 各グループで、「隣接する値 v, v+D が選べない」重み付き独立集合 (パスDP)
-    for r, vs in groups.items():
+    for _, vs in groups.items():
         vs.sort()
         # dp0 = i-1 の値を選ばなかったときの最大重み
         # dp1 = i-1 の値を選んだときの最大重み
@@ -47,7 +49,6 @@ def min_deletions(A, D):
     return N - max_keep
 
 
-input = sys.stdin.readline
 N, D = map(int, input().split())
 A = list(map(int, input().split()))
 print(min_deletions(A, D))
