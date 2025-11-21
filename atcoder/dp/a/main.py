@@ -2,12 +2,15 @@
 
 # この問題はDP足場iに行くために最小のコストを求めていく
 n = int(input())
-h = list(map(int, input().split()))
-dp = [0 for _ in range(n)]
+step = list(map(int, input().split()))
+step_count = [float('inf')] * (n)
+step_count[0] = 0
+for i in range(n):
+    if i + 1 < n:
+        diff_1 = abs(step[i+1]-step[i])
+        step_count[i+1] = min(step_count[i+1], step_count[i]+diff_1)
+        if i+2<n:
+            diff_2 = abs(step[i+2]-step[i])
+            step_count[i+2] = min(step_count[i+2], step_count[i]+diff_2)
 
-dp[1] = abs(h[1] - h[0])
-for i in range(2, n):
-    dp[i] = min(dp[i-1]+abs(h[i]-h[i-1]), dp[i-2]+abs(h[i]-h[i-2]))
-
-print(dp[n-1])
-
+print(step_count[-1])
