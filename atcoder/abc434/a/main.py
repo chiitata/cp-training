@@ -6,8 +6,8 @@ a = a*1000
 
 p = 0
 
-while a >= b:
+while a >= 0:
     a -= b
     p += 1
 
-print(p)
+print(p) 

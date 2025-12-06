@@ -12,4 +12,5 @@ for i in range(n):
 
 for i in range(1, m+1):
     if number[i] != 0:
-        print(weight[i]/number[i])
+        print(number[i])
+
