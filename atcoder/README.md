@@ -7,3 +7,4 @@
 * defautltdict(型名)で辞書型を作ることができる
 * a, b in defautldict.items()でindexと要素を取り出すことができる
 * set()ではset()した後に何かに代入しなければならない
+
