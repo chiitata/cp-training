@@ -59,7 +59,7 @@ class SegTree:
 
 n, q = map(int, input().split())
 a = list(map(int, input().split()))
-
+from atcoder.segtree import SegTree
 ide_ele = 0
 def segfunc(x, y):
     return x + y
